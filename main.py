@@ -18,18 +18,15 @@ if __name__ == '__main__':
                                     user='root',
                                     passwd='secret',
                                     db='test')
-        print("conectado")
-
-        cursor = connect.cursor()
-
-        cursor.execute(DROP_TABLE_USERS)
-        cursor.execute(USERS_TABLES)
+        
+        with connect.cursor() as cursor: 
+            cursor.execute(DROP_TABLE_USERS)
+            cursor.execute(USERS_TABLES)
 
     except pymysql.err.OperationalError as err:
         print("no pudo conectarase")
         print(err)
     
     finally:
-        cursor.close()
         connect.close()
         print('Conexión finalizada')
