@@ -1,5 +1,5 @@
 import pymysql
-# from config
+from decouple import config
 
 DROP_TABLE_USERS = "DROP TABLE IF EXISTS users"
 
@@ -13,11 +13,11 @@ USERS_TABLES = """CREATE TABLE users(
 
 if __name__ == '__main__':
     try:
-        connect = pymysql.Connect(host='127.0.0.1',
-                                    port=3306,
-                                    user='root',
-                                    passwd='secret',
-                                    db='test')
+        connect = pymysql.Connect(host=config('HOST'),
+                                    port=config('PORT'),
+                                    user=config('USER_MYSQL'),
+                                    passwd=config('PASSWORD_MYSQL'),
+                                    db=config('BD_MYSQL'))
         
         with connect.cursor() as cursor: 
             cursor.execute(DROP_TABLE_USERS)
