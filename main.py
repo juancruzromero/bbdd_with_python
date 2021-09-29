@@ -41,6 +41,11 @@ if __name__ == '__main__':
             cursor.execute(query, values)
             connect.commit()
 
+            # Eliminar registro/s
+            query = "DELETE FROM users WHERE id=%s"
+            cursor.execute(query, (5,))
+            connect.commit()
+
     except pymysql.err.OperationalError as err:
         print("no pudo conectarase")
         print(err)
