@@ -9,3 +9,5 @@ En este proyecto utilizo las librerías **psycopg2** y **pymysql** para manipula
 
 ## 🤯 Próximos pasos:
 Una vez que aprendemos a hacer un CRUD con python utilizando una base de datos, el próximo paso es utilizar un [ORM](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping) para la persistencia de datos. El más utiliazado a la fecha es [SQLAlchemy](https://www.sqlalchemy.org/)
+
+Recomiendo chusmear este proyecto [Flask API](https://github.com/juancruzromero/flask_api) 🥰.
