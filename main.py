@@ -1,10 +1,10 @@
-import pymysql
+import psycopg2
 from decouple import config
 
 DROP_TABLE_USERS = "DROP TABLE IF EXISTS users"
 
 USERS_TABLES = """CREATE TABLE users(
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL,
     username VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -13,11 +13,14 @@ USERS_TABLES = """CREATE TABLE users(
 
 if __name__ == '__main__':
     try:
-        connect = pymysql.Connect(host=config('HOST'),
-                                    port=config('PORT'),
-                                    user=config('USER_MYSQL'),
-                                    passwd=config('PASSWORD_MYSQL'),
-                                    db=config('BD_MYSQL'))
+        # connect = psycopg2.Connect(host=config('HOST'),
+        #                             port=config('PORT'),
+        #                             user=config('USER_MYSQL'),
+        #                             passwd=config('PASSWORD_MYSQL'),
+        #                             db=config('BD_MYSQL'))
+
+        # Conectarse con Postgres:
+        connect = psycopg2.connect("AGREGAR ARGUMENTOS")
         
         with connect.cursor() as cursor: 
             cursor.execute(DROP_TABLE_USERS)
@@ -46,7 +49,7 @@ if __name__ == '__main__':
             cursor.execute(query, (5,))
             connect.commit()
 
-    except pymysql.err.OperationalError as err:
+    except psycopg2.OperationalError as err:
         print("no pudo conectarase")
         print(err)
     
