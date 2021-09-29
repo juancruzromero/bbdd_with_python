@@ -35,6 +35,12 @@ if __name__ == '__main__':
             print(rows)
             print(cursor.fetchall())
 
+            # Actualizar registros
+            query = "UPDATE users SET username = %s WHERE id=%s"
+            vales = ("Cambio de username", 1)
+            cursor.execute(query, values)
+            connect.commit()
+
     except pymysql.err.OperationalError as err:
         print("no pudo conectarase")
         print(err)
