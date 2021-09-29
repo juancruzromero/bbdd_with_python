@@ -29,6 +29,12 @@ if __name__ == '__main__':
             cursor.execute(query, values)
             connect.commit() # Confirmo persistencia de datos.
 
+            # Obtener registros:
+            query = "SELECT * FROM users"
+            rows = cursor.execute(query)
+            print(rows)
+            print(cursor.fetchall())
+
     except pymysql.err.OperationalError as err:
         print("no pudo conectarase")
         print(err)
